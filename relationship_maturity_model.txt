@@ -1,0 +1,45 @@
+I recently gave a talk at RESTFest Midwest 2018 about this concept of a maturity model for relationships, and this post is intended to be the formalized version of those points. Through a lot of recent discussions on various Slacks, and over the course of our conversation in Grand Rapids, it has become pretty clear there is a wide range of definitions for relationship tags on web links.  I believe it’s crucial we develop a shared understanding of relationships in general so we can move forward determining how to create and enable affordance driven APIs.
+
+At the highest level a relationship is merely the meaning which connects two concepts or contexts. A graph is a simple example, the relationships are the edges between two nodes. In the context of Web APIs relationships are the ‘rel’ attribute of RFC 8288 web links. The role of `rel` is to convey the semantics which join two contexts. In most discussions of hypermedia APIs links take a prevalent role, but their utility is often assumed or discussed in a narrow scope.
+
+There is one concern which is mostly unaddressed in both models, which is the inevitable question a team will ask when considering implementing hypermedia driven APIs, WHY? 
+
+Ok, I have links, now what?
+
+We have two models which help us begin the story of the relationship, the Richardson (RMM) and Amundsen (AMM) Maturity models.  Zdenic Nemec wrote a (fantastic post)[https://blog.goodapi.co/api-maturity-fb25560151a3] comparing the two models, if you haven’t read it yet you may want to before continuing.  However for our purposes Amundsen himself provides us a useful and succinct summary: The RMM focuses on response documents; AMM focuses on API description documents.  A link therefor provides the foundation which binds the description to the response. Without the link we are dependent on static interactions, but without the `rel` we are teetering on the edge of a cliff shrouded in fog; we know something is on the other side of but we have no idea how to get there and what we will find.
+
+Why ‘do’ hypermedia, what does it matter?
+
+The key to understanding the power of hypermedia, is to understand the context of these links regardless of the serialization or mediaType. This clarity comes from the `rel` answering the question “How is the current context related to the target context?” There are many ways to answer this question, each one building upon the last adding quite a bit of power to the humble link. Why do we do hypermedia? So we can reveal to consumer agents the relationships between two contexts without sharing knowledge ahead of time, and if we do share our vocabulary ahead of time enabling consumers to rapidly build very rich interactions.
+
+The Relationship Maturity Model
+
+Level 0 - Anonymous Relationships
+Level 1 - Generic Relationships
+Level 2 - Named Relationships
+Level 3 - Stateful Relationships
+
+Anonymous Relationships
+
+The least helpful, and unfortunately most commonly demonstrated relationship by an overwhelming majority is the anonymous relationship.  This empty structure string or array element provides no context to the consumer.  Most often this is the type of link shown when creating a demonstration to showcase hypermedia, and the frequent response is to question what exactly does a link like this provide? Nearly nothing. A link of this level provides no real additional benefit, it adds to system chattiness and may even add risk to the use of the application.
+
+Generic Relationships
+
+This is the foundation of all link contexts, these generic relationships can be found in the (IANA Link Relation Registry)[https://www.iana.org/assignments/link-relations/link-relations.xhtml].  The use of these simple and expressive relation types provides a wealth of general context to the consumer, not only do they provide some understanding of the relationship, but they begin to demonstrate the capabilities of an affordance centric API.  A generic agent now has the capacity to understand with `rel=“collection”` that the URL points to a resource collection root. If you receive a link with `rel=“item”` you know this addresses a single item within a resource collection. This won’t enable the richest interactions, but generic clients like the HAL-Browser use this level of detail to create GUIs for services the consumer has never uniquely integrated.
+
+Named Relationships
+
+Building upon the foundation of generic relationships with the use of custom rel names a designer can introduce new relationships which provide additional context to the links. User created relationships are required to be URIs, which allows a number of strategies from using the tag scheme through referenceable URIs. Using referenceable URIs provides the opportunity to include and control unique application context in every response.  This enables you to move from identifying a resource `item` to being able to identify _this_ resource is a person, and finally the relationship between the current context and the resource is `http://example.org/vocabulary/school/class/student`. By providing referenceable human and machine readable documentation as the `rel`, I have added a vast capacity for conveying meaning to a client.  As a consumer I now have a very rich understanding of the application’s vocabulary, it’s resources, and how they might relate to one another. These named relationships can provide consumers with hints on the composition of complex resource representations and an out-of-band vocabulary to safely use in creating rich resource interactions.
+
+Stateful Relationships
+
+Each previous relationship level is focused on conveying increasing detail of the current state of the resources, however to create a fully functional affordance centric API requires the ability to communicate resource affordances.  The capability to understand the state of a system with a generic client is powerful, but the ability to alter the state of a system with a generic client is truly revolutionary.  Revisiting the role of `rel` above, you’ll notice it doesn’t include mention of resource or affordance, because it simply adds the semantic context to determine how the two contexts are related. An affordance of `rel=“http://example.org/vocabulary/school/class/addStudent”` can be discovered and bound just like the Named Relationship and interpreted as “self context has the addStudent affordance, which is performed at the target context.” By adding affordance in a standard way outside of a specific mediaType, you have added the power of hypermedia with the flexibility and versatility of raw JSON or XML.
+
+Bringing it together
+
+The relationship maturity model is about understanding the nature of relationships between contexts, and removing preconceived notions on how they can relate.  It is easiest to accept a link between two contexts as simply a link between two resources, but the real power was in the intent of the standards to create a bridge to communicate all types of relationships.
+
+Additional reading
+
+
+While you’re at it, check out Jason Desrosiers fantastic (hypermedia maturity model)[https://8thlight.com/blog/jason-desrosiers/2018/05/30/the-hypermedia-maturity-model.html]  to learn another way to understand your API designs.
