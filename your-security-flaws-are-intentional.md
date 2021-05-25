@@ -1,5 +1,5 @@
-# Title: Your API Security flaws are intentional.
-## Subtitle: A secure API is intentionally designed, if you’re having API security issues then your API design is the problem.
+# Your API Security flaws are intentional.
+## A secure API is intentionally designed, if you’re having API security issues then your API design is the problem.
 
 Drip. Drip. Drip. Drip. Your eyes spring open. Everything is dark. You frantically look around for whatever woke you up. The faucet is leaking. Again. No matter how new, expensive, or well maintained that faucet just leaks. It’s designed that way.
 
