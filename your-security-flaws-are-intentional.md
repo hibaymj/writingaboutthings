@@ -1,5 +1,5 @@
-#Title: Your API Security flaws are intentional.
-##Subtitle: A secure API is intentionally designed, if you’re having API security issues then your API design is the problem.
+# Title: Your API Security flaws are intentional.
+## Subtitle: A secure API is intentionally designed, if you’re having API security issues then your API design is the problem.
 
 Drip. Drip. Drip. Drip. Your eyes spring open. Everything is dark. You frantically look around for whatever woke you up. The faucet is leaking. Again. No matter how new, expensive, or well maintained that faucet just leaks. It’s designed that way.
 
@@ -15,7 +15,7 @@ There are two main factors which contributed in a variety of ways: assumptions, 
 
 Engineers make tolerance assumptions and balance it against costs to manufacture. This design is responsible for the failure even though it’s far removed in both time and space.
 
-###Complex Environments breed tolerated Complex Failures
+### Complex Environments breed tolerated Complex Failures
 
 In a [recent post](https://stoplight.io/conflicting-model-problem/) [Nauman Ali](https://stoplight.io/blog/author/nauman-ali/) walks us through a [great scenario](https://xkcd.com/927/) where well intentioned developers make benign changes to a contact model. He shows how over time these models become increasingly incompatible with direct impact to software quality. 
 
@@ -24,7 +24,7 @@ APIs are the digital model of your organization’s business. Organizations are 
 Just like our faucet, the two different “Contact” models are both well designed _in isolation_. The issue arises when you look at the assumptions and tolerances of the API platform as a whole. When you look at your APIs, do you see and recognize the cracks? Suppose those responsible for API security make the (in isolation) entirely reasonable assumption that “Contact” refers to an email address and physical addresses are exposed. What happens to them? Are they entirely responsible for this complex failure? Is it really their job to know every detail about every resource in the APIs? What happens to the platform?
 
 
-###The origins of our leak
+### The origins of our leak
 
 Consider both of these services are part of a multi-tenant SaaS provider’s core platform. We have two services referred to as “Contact”, for clarity we’ll refer to the newer one as “Email-Contact” and the other as “Physical-Contact”. Security is usually defined at the URL and sometimes HTTP Method level. Email-Contact will be deployed internally at `https://email-contact-service.example-platform.com/api/contacts` and Physical-Contact at `https://address-contact-service.example-platform.com/api/contacts`.
 
@@ -32,7 +32,7 @@ Our team creating the Email-Contact service works with their security team to de
 
 The attacker creates a free organization, granting themselves the “owner” role. Using this they can make calls to both contact services, providing unauthorized access to contact physical addresses.
 
-###Attack Surfaces, and leaky faucets
+### Attack Surfaces, and leaky faucets
 
 Security professionals refer to the “attack surface” of a system as the exposed part where flaws can lead to unintended or unauthorized access, disclosure, or execution.
 
