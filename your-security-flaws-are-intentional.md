@@ -3,7 +3,7 @@
 
 Drip. Drip. Drip. Drip. Your eyes spring open. Everything is dark. You frantically look around for whatever woke you up. The faucet is leaking. Again. No matter how new, expensive, or well maintained that faucet just leaks. It’s designed that way.
 
-Don’t worry, this isn’t a conspiracy theory. The faucet companies aren’t out to drive you mad. It’s just a design flaw. Their faucet has specific manufacturing tolerances to keep prices low. An inner seal is a on the small side of acceptable, while the outer seal is on the bigger side. You tighten everything up. But you know it’s going to happen again. The design is flawed, and you’re faucet leaks.
+Don’t worry, this isn’t a conspiracy theory. The faucet companies aren’t out to drive you mad. It’s just a design flaw. Their faucet has specific manufacturing tolerances to keep prices low. An inner seal is a on the small side of acceptable, while the outer seal is on the bigger side. You tighten everything up. But you know it’s going to happen again. The design is flawed, and your faucet leaks.
 
 The design was completely intentional. The consequences to you weren’t. Engineers performed studies on tolerances for the parts to balance costs and quality. Your faucet is a very complex failure in a small package.
 
