@@ -34,6 +34,22 @@ The attacker creates a free organization, granting themselves the “owner” ro
 
 ### Attack Surfaces, and leaky faucets
 
-Security professionals refer to the “attack surface” of a system as the exposed part where flaws can lead to unintended or unauthorized access, disclosure, or execution.
+Security professionals refer to the “attack surface” of a system as the exposed part where flaws can lead to unintended or unauthorized access, disclosure, or execution. This is an apt metaphor.
 
-Just like with our faucet, the assumptions and tolerances of individual elements of our API platform allows API security leaks to emerge.
+Just like with our faucet, the assumptions and tolerances of individual elements of our API platform allows API security leaks to emerge. We can't place fault in any individual. Many things needed to happen for this failure to occur. It all started with our design.
+
+### The Design Problem
+
+Looking back at our faucet example, the issue we ran into was the unintended consequences of our wide tolerances. We have the same type of failure occuring in our API design, so what is happening?
+
+Our security definitions are _designed_ with less specifically than our resources. We know what happened in this case, and we can add checks to each Contacts authorization processing. This is just a patch. The leaks will come again. The only way to ensure security _by design_ is to allow our security to be defined with equal or greater specificity than our resources. Let's see how we can do that.
+
+## API Security by Design
+
+Every API request will specify the following one way or another:
+* The target resource
+* The consumer's intent
+* Intent data
+* Authorization
+
+When this request is received by the platform, it will need an additional peice of information; what underlying service will process this request? This is a problem. One of the central reasons for implementing APIs is to abstract away these operational details. We could expose this to the consumer, but we would be eliminating nearly all of the value of our APIs. Clearly we must find another solution.
