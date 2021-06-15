@@ -70,4 +70,13 @@ Worse yet, these sub-domains can only be utilized internally. The naming of our 
 
 This is a simple, perhaps difficult to accept, yet profound truth: a URL is insufficient to define a _security context_. This _simplified_ approach only worked in the monolithic deployment because all the requests had consistent `base URLs` and only required a few DNS routing rules.
 
-This relatively simple case is only exacerbated using containers to further divide traffic on a specific host!
+This relatively simple case is only exacerbated using containers to further divide traffic on a specific host! This is only going to get worse, so how do we _fix it_?
+
+## Securable Design
+
+To secure APIs we need tighter tolerances, we need to specify something _more_. It's time to talk about consumer intent, and intent data. Consumer intent is the type of the consumer's desired transition or representation expressed to the resource. Intent data is the data necessary to flesh out the specifics of the consumer's desire. 
+
+> [Roy Fielding wrote](https://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven): 
+> A REST API should spend almost all of its descriptive effort in defining the media type(s) used for representing resources and driving application state, or in defining extended relation names and/or hypertext-enabled mark-up for existing standard media types. Any effort spent describing what methods to use on what URIs of interest should be entirely defined within the scope of the processing rules for a media type (and, in most cases, already defined by existing media types). 
+
+
