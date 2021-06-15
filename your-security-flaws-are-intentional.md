@@ -65,3 +65,9 @@ Let's see some examples:
 The only stable value in these examples is the _relative path_ after the the `TLD` and `port`. This explains why _security contexts_ are defined by the relative URLs. Obviously that's not the whole picture. A small number of networking rules are configured per-application to ensure the traffic finds the correct destination. The `base URL` is identicle for all the security contexts.
 
 How does this look with microservices? Recall our two services, contact and physical-contact, are deployed at `https://email-contact-service.example-platform.com/api/contacts` and `https://address-contact-service.example-platform.com/api/contacts` respectively. Immediately we're faced with a huge problem. the `base URL` is different. Meaningfully different. Each sub-domain is pointing to a unique application!
+
+Worse yet, these sub-domains can only be utilized internally. The naming of our two contact services overlap. We can figure out a functional approach or require external consumers to use our internal implementation details.
+
+This is a simple, perhaps difficult to accept, yet profound truth: a URL is insufficient to define a _security context_. This _simplified_ approach only worked in the monolithic deployment because all the requests had consistent `base URLs` and only required a few DNS routing rules.
+
+This relatively simple case is only exacerbated using containers to further divide traffic on a specific host!
