@@ -42,14 +42,14 @@ Just like with our faucet, the assumptions and tolerances of individual elements
 
 Looking back at our faucet example, the issue we ran into was the unintended consequences of our wide tolerances. We have the same type of failure occuring in our API design, so what is happening?
 
-Our security definitions are _designed_ with less specifically than our resources. We know what happened in this case, and we can add checks to each Contacts authorization processing. This is just a patch. The leaks will come again. The only way to ensure security _by design_ is to allow our security to be defined with equal or greater specificity than our resources. Let's see how we can do that.
+Our security definitions are _designed_ with less specifically than our resources. We know what happened in this case, and we can add checks to each Contacts authorization processing. This is just a patch. The leaks will come again. The only way to ensure security _by design_ is to define it with equal or greater specificity than our resources. Let's see how we can do that.
 
 ## API Security by Design
 
-Every API request will specify the following one way or another:
+Every API consumer request will specify the following one way or another:
 * The target resource
 * The consumer's intent
 * Intent data
-* Authorization
+* Authorization information
 
-When this request is received by the platform, it will need an additional peice of information; what underlying service will process this request? This is a problem. One of the central reasons for implementing APIs is to abstract away these operational details. We could expose this to the consumer, but we would be eliminating nearly all of the value of our APIs. Clearly we must find another solution.
+The platform also needs one more critical peice of informaton the consumer shouldn't know; where should the request go? When this request is received by the platform, it will need an additional peice of information; what underlying service will process this request? This is a problem. One of the central reasons for implementing APIs is to abstract away these operational details. We could expose this to the consumer, but we would be eliminating nearly all of the value of our APIs. Clearly we must find another solution.
