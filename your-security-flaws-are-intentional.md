@@ -52,4 +52,7 @@ Every API consumer request will specify the following one way or another:
 * Intent data
 * Authorization information
 
-The platform also needs one more critical peice of informaton the consumer shouldn't know; where should the request go? When this request is received by the platform, it will need an additional peice of information; what underlying service will process this request? This is a problem. One of the central reasons for implementing APIs is to abstract away these operational details. We could expose this to the consumer, but we would be eliminating nearly all of the value of our APIs. Clearly we must find another solution.
+These are the tools we have to operate and secure our services. The platform also needs one more critical peice of informaton the consumer shouldn't know; where should the request go? This presents a huge problem. The fundamental reason we build APIs is to decouple the client and server. If we ask the user to provide more information we destroy the value we are trying to create in the first place.
+
+
+When this request is received by the platform, it will need an additional peice of information; what underlying service will process this request? This is a problem. One of the central reasons for implementing APIs is to abstract away these operational details. We could expose this to the consumer, but we would be eliminating nearly all of the value of our APIs. Clearly we must find another solution.
