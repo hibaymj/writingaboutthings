@@ -79,4 +79,11 @@ To secure APIs we need tighter tolerances, we need to specify something _more_. 
 > [Roy Fielding wrote:](https://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven)
 > A REST API should spend almost all of its descriptive effort in defining the media type(s) used for representing resources and driving application state, or in defining extended relation names and/or hypertext-enabled mark-up for existing standard media types. Any effort spent describing what methods to use on what URIs of interest should be entirely defined within the scope of the processing rules for a media type (and, in most cases, already defined by existing media types). 
 
-
+The simplest way to use this to solve our problem is to use metadata outside of the request body and URL to declare consumer intent. Lets see some HTTP requests in action:
+```Accept: application/vnd.example-platform.contacts.email+json
+GET https://example-platform.org/api/contacts/12345
+```
+```Accept: application/vnd.example-platform.contacts.mailing-address+json
+GET https://example-platform.org/api/contacts/45678
+```
+What we have done is use Vendor Media Types to tell the server exactly which type of contact we would like. Assuming the schemas for these mediaTypes are known, this is precisely the information we need to resolve our security conflict! By moving the additional information into the `Accept` header, we have made the consumer's life easier AND made our service more secure!
