@@ -19,7 +19,7 @@ Engineers make tolerance assumptions and balance it against costs to manufacture
 
 In a recent post Nauman Ali walks us through a great scenario where [well intentioned developers make benign changes to a contact model](https://stoplight.io/blog/conflicting-model-problem/). He shows how over time these models become increasingly incompatible with direct impact to software quality. 
 
-APIs are the digital model of your organization’s business. Organizations are very complex environments. In this example “Contact” represents a physical mailing address to one group, and an email address to others.
+APIs are the digital model of your organization’s business. Organizations are very complex environments. Your API designs _will_ be complex. In this example “Contact” represents a physical mailing address to one group, and an email address to others.
 
 Just like our faucet, the two different “Contact” models are both well designed _in isolation_. The issue arises when you look at the assumptions and tolerances of the API platform as a whole. When you look at your APIs, do you see and recognize the cracks? Suppose those responsible for API security make the (in isolation) entirely reasonable assumption that “Contact” refers to an email address and physical addresses are exposed. What happens to them? Are they entirely responsible for this complex failure? Is it really their job to know every detail about every resource in the APIs? What happens to the platform?
 
