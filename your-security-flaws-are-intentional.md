@@ -87,3 +87,8 @@ GET https://example-platform.org/api/contacts/12345
 GET https://example-platform.org/api/contacts/45678
 ```
 What we have done is use Vendor Media Types to tell the server exactly which type of contact we would like. Assuming the schemas for these mediaTypes are known, this is precisely the information we need to resolve our security conflict! By moving the additional information into the `Accept` header, we have made the consumer's life easier AND made our service more secure!
+
+## Wrapping Up!
+The security of our APIs is dependent on our design tolerances. If our API design allows ambiguity, depends on overloading the resource locator (URL), or assumes every method requires the same access then we will continue to have API security breaches. Our design ensures it.
+
+If you want to secure your APIs, then tighten up your tolerances. You may notice a large improvement in your developer experience along the way.
