@@ -10,7 +10,7 @@ The design was completely intentional. The consequences to you weren’t. Engine
 Complex failures are maddeningly difficult to prevent. Their preconditions are specific and numerous. Ultimately, this makes them very rare. Is it rare enough?
 
 There are two main factors which contributed in a variety of ways:
-* **Assumptions**: The engineers assumed if both parts were within tolerances, the whole faucet would work. But they didn’t take into account relative tolerances for the spaces between. They assumed the design specified enough. It didn’t.
+* **Assumptions**: The engineers assumed if both parts were within tolerances, the whole faucet would work. But they didn’t consider relative tolerances for the spaces between. They assumed the design specified enough. It didn’t.
 * **Tolerance Objectives**: The primary design goal for the faucet was to keep prices low. The intention was to create a functional, low cost faucet, and price was more important. They created leaky failure scenarios when they compromised that design objective.
 
 Engineers make tolerance assumptions and balance it against costs to manufacture. This design is responsible for the failure even though it’s far removed in both time and space.
@@ -52,19 +52,19 @@ Every API consumer request will specify the following one way or another:
 * Intent data
 * Authorization information
 
-This is the data we have to operate and secure our services. However, with this scheme the platform also needs one more critical piece of informaton the consumer shouldn't know; where should the request go? This presents a huge problem. The fundamental reason we build APIs is to decouple the client and server. If we ask the user to provide more information we destroy the value we are trying to create in the first place.
+This is the data we have to operate and secure our services. However, with this scheme the platform also needs one more critical piece of information the consumer shouldn't know; where should the request go? This presents a huge problem. The fundamental reason we build APIs is to decouple the client and server. If we ask the user to provide more information we destroy the value we are trying to create in the first place.
 
-Clearly we must find another solution. Let's take a deeper look into whats causing this contention. To do that we need to consider a little bit of networking in a microservice architecture. Web applications use URLs to identify different security _contexts_, or places to define security rules. This is done to decouple the security definitions from the network hardware level identifiers like _IP Address_ and _port_. This is done to prevent security issues from creeping in when hardware fails or is upgraded, or the application moves to a different environment. This sounds familiar to our API decoupling goals. More on that in a bit.
+Clearly, we must find another solution. Let's take a deeper look into what's causing this contention. To do that we need to consider a little bit of networking in a microservice architecture. Web applications use URLs to identify different security _contexts_, or places to define security rules. This is done to decouple the security definitions from the network hardware level identifiers like _IP Address_ and _port_. This is done to prevent security issues from creeping in when hardware fails or is upgraded, or the application moves to a different environment. This sounds familiar to our API decoupling goals. More on that in a bit.
 
 There is a fundamental assumption with this pattern; you can do anything you want if you have access to a security context. This approach was created to secure large monolithic web applications where all the capabilities live together in the same codebase. In this case the approach fits extremely well. However, its problematic with a microservices architecture because it reintroduces the same fundamental security challenges.
 
 Let's see some examples:
 * `https://webhost-dev-12-2:9999/welcome.html` moves to `https://webhost-prod-4-1:9899/welcome.html`. In this case we have an internal DNS name host, the application moves from a `DEV` to a `PROD` environment, and the port changes as well.
-* `https://webhost-prod-4-1:9899/welcome.html` is externally exposed at `https://example-platform.org/welcome.html`. Again the hostname changes, and the port is dropped entirely.
+* `https://webhost-prod-4-1:9899/welcome.html` is externally exposed at `https://example-platform.org/welcome.html`. Again, the hostname changes, and the port is dropped entirely.
 
-The only stable value in these examples is the _relative path_ after the the `TLD` and `port`. This explains why _security contexts_ are defined by the relative URLs. Obviously that's not the whole picture. A small number of networking rules are configured per-application to ensure the traffic finds the correct destination. The `base URL` is identicle for all the security contexts.
+The only stable value in these examples is the _relative path_ after the `TLD` and `port`. This explains why _security contexts_ are defined by the relative URLs. Obviously that's not the whole picture. A small number of networking rules are configured per-application to ensure the traffic finds the correct destination. The `base URL` is identical for all the security contexts.
 
-How does this look with microservices? Recall our two services, contact and physical-contact, are deployed at `https://email-contact-service.example-platform.com/api/contacts` and `https://address-contact-service.example-platform.com/api/contacts` respectively. Immediately we're faced with a huge problem. the `base URL` is different. Meaningfully different. Each sub-domain is pointing to a unique application!
+How does this look with microservices? Recall our two services, contact and physical-contact, are deployed respectively at `https://email-contact-service.example-platform.com/api/contacts` and `https://address-contact-service.example-platform.com/api/contacts`. Immediately we're faced with a huge problem. the `base URL` is different. Meaningfully different. Each sub-domain is pointing to a unique application!
 
 Worse yet, these sub-domains can only be utilized internally. The naming of our two contact services overlap. We can figure out a functional approach or require external consumers to use our internal implementation details.
 
